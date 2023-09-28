@@ -22,13 +22,11 @@ cursor.execute(
     "INSERT INTO meat (name, price, quantity) VALUES ('beaf', 55, 10)")
 cursor.execute(
     "INSERT INTO meat (name, price, quantity) VALUES ('pork', 40, 15)")
-
-# 提交事務
 conn.commit()
 
+# 印出表格
 cursor.execute("SELECT * FROM meat")
 meat_list = cursor.fetchall()
-
 print("\n表格內容 (修改資料後):")
 for item in meat_list:
     print(item)
@@ -36,26 +34,27 @@ for item in meat_list:
 # 更新資料
 cursor.execute("UPDATE meat SET price = 35 WHERE name = 'pork'")
 cursor.execute("UPDATE meat SET quantity = 30 WHERE name = 'chicken'")
-
 conn.commit()
 
+# 印出表格
 cursor.execute("SELECT * FROM meat")
 meat_list = cursor.fetchall()
-
 print("\n表格內容 (修改資料後):")
 for item in meat_list:
     print(item)
 
+# 刪除資料
 cursor.execute("DELETE FROM meat WHERE price = '40'")
 conn.commit()
 
+# 印出表格
 cursor.execute("SELECT * FROM meat")
 meat_list = cursor.fetchall()
-
 print("\n表格內容 (修改資料後):")
 for item in meat_list:
     print(item)
-
+    
+#刪除表格、關掉cursor與conn
 cursor.execute("DROP TABLE meat")
 cursor.close()
 conn.close()
